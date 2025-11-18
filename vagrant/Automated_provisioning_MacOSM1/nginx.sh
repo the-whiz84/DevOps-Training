@@ -1,7 +1,7 @@
 # adding repository and installing nginx		
-apt update
-apt install nginx -y
-cat <<EOT > vproapp
+sudo apt update
+sudo apt install nginx -y
+sudo cat <<EOT > vproapp
 upstream vproapp {
 
  server app01:8080;
@@ -22,11 +22,11 @@ location / {
 
 EOT
 
-mv vproapp /etc/nginx/sites-available/vproapp
-rm -rf /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
+sudo mv vproapp /etc/nginx/sites-available/vproapp
+sudo rm -rf /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
 
 #starting nginx service and firewall
-systemctl start nginx
-systemctl enable nginx
-systemctl restart nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl restart nginx

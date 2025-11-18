@@ -1,0 +1,25 @@
+    1  dnf update -y
+    2  dnf install wget -y
+    3  dnf install rabbitmq -y
+    4  ## install these dependencies from standard OS repositories
+    5  dnf install -y logrotate
+    6  dnf install -y erlang rabbitmq-server
+    7  clear
+    8  systemctl enable --now rabbitmq-server.service 
+    9  systemctl status rabbitmq-server.service 
+   10  clear
+   11  sh -c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config'
+   12  rabbitmqctl add_user test test
+   13  rabbitmqctl set_user_tags test administrator
+   14  rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
+   15  systemctl restart rabbitmq-server
+   16  clear
+   17  firewall-cmd --add-port=5672/tcp
+   18  firewall-cmd --runtime-to-permanent
+   19  firewall-cmd --reload
+   20  systemctl start rabbitmq-server
+   21  systemctl enable rabbitmq-server
+   22  systemctl status rabbitmq-server
+   23  clear
+   24  history
+   25  history >> /vagrant/rmq01.txt

@@ -2,21 +2,17 @@
 DATABASE_PASS='admin123'
 
 # MEmcache
-yum install epel-release -y
-yum install memcached -y
+dnf update -y
+dnf install memcached -y
 systemctl start memcached
 systemctl enable memcached
 systemctl status memcached
 memcached -p 11211 -U 11111 -u memcached -d
 
 # Rabbit
-yum install socat -y
-yum install erlang -y
-yum install wget -y
-wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.10/rabbitmq-server-3.6.10-1.el7.noarch.rpm
-rpm --import https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
-yum update
-rpm -Uvh rabbitmq-server-3.6.10-1.el7.noarch.rpm
+dnf update -y
+dnf install -y logrotate
+dnf install -y erlang rabbitmq-server
 systemctl start rabbitmq-server
 systemctl enable rabbitmq-server
 systemctl status rabbitmq-server
@@ -25,8 +21,9 @@ rabbitmqctl add_user rabbit bunny
 rabbitmqctl set_user_tags rabbit administrator
 systemctl restart rabbitmq-server
 
-# Mysql
-yum install mariadb-server -y
+# Mysql\
+dnf update -y
+dnf install mariadb-server -y
 
 #mysql_secure_installation
 sed -i 's/^127.0.0.1/0.0.0.0/' /etc/my.cnf

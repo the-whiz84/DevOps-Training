@@ -1,0 +1,20 @@
+    1  apt update && apt upgrade -y
+    2  reboot
+    3  apt install nginx -y
+    4  nano /etc/nginx/sites-available/vproapp
+    5  rm -rf /etc/nginx/sites-enabled/default
+    6  ln -s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
+    7  systemctl restart nginx
+    8  history > /vagrant/web01.txt
+    9  history >> /vagrant/web01.txt
+   10  cd /vagrant/
+   11  ll
+   12  systemctl enable nginx
+   13  cd /
+   14  ll
+   15  ll /vagrant/
+   16  exit
+   17  history >> /vagrant/web01.txt
+   18  exit
+   19  rm -rf /etc/nginx/sites-enabled/default
+   20  history > /vagrant/web01.txt

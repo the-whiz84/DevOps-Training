@@ -1,0 +1,27 @@
+    1  clear
+    2  dnf update -y
+    3  dnf install memcached -y
+    4  systemct start memcached
+    5  systemctl start memcached
+    6  systemctl enable memcached
+    7  systemctl status -l memcached
+    8  clear
+    9  sed -i 's/127.0.0.1/0.0.0.0/g' /etc/sysconfig/memcached
+   10  systemctl restart memcached
+   11  less sed -i 's/127.0.0.1/0.0.0.0/g' /etc/sysconfig/memcached
+   12  clear
+   13  less /etc/sysconfig/memcached
+   14  systemctl status firewalld
+   15  firewall-cmd -add-port=11211/tcp
+   16  firewall-cmd --add-port=11211/tcp
+   17  firewall-cmd --runtime-to-permanent
+   18  firewall-cmd --add-port=11111/udp
+   19  firewall-cmd --runtime-to-permanent
+   20  firewall-cmd --reload
+   21  memcached -p 11211 -U 11111 -u memcached -d
+   22  clear
+   23  systemctl status -l memcached
+   24  clear
+   25  exit
+   26  history
+   27  history >> /vagrant/mc01.txt

@@ -1,0 +1,93 @@
+    1  dnf update -y
+    2  dnf -y install java-openjdk java-openjdk-devel
+    3  dnf -y install java-23-openjdk java--23-openjdk-devel
+    4  dnf -y install java-21-openjdk java--21-openjdk-devel
+    5  dnf -y install java-20-openjdk java--20-openjdk-devel
+    6  dnf -y install java-19-openjdk java-19-openjdk-devel
+    7  dnf -y install java-18-openjdk java-18-openjdk-devel
+    8  dnf -y install java-17-openjdk java-17-openjdk-devel
+    9  dnf search java
+   10  clear
+   11  dnf -y install java-latest-openjdk java-latest-openjdk-devel
+   12  clear
+   13  dnf install git wget -y
+   14  clear
+   15  cd /tmp
+   16  dnf search tomcat
+   17  qclear
+   18  clear
+   19  wget https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.14/bin/apache-tomcat-11.0.14.tar.gz
+   20  ll
+   21  tar xzvf apache-tomcat-11.0.14.tar.gz 
+   22  clear
+   23  ll
+   24  useradd --home-dir /usr/local/tomcat --shell /sbin/nologin tomcat
+   25  cp -r apache-tomcat-11.0.14/* /usr/local/tomcat/
+   26  chown -R tomcat:tomcat /usr/local/tomcat/
+   27  clear
+   28  cd /usr/local/tomcat/
+   29  ll
+   30  dnf install nano -y
+   31  clear
+   32  nano /etc/systemd/system/tomcat.service
+   33  systemctl daemon-reload 
+   34  systemctl start tomcat
+   35  systemctl enable tomcat
+   36  systemctl status -l tomcat
+   37  clear
+   38  firewall-cmd --get-active-zones 
+   39  firewall-cmd --zone=public --add-port=8080/tcp --permanent
+   40  firewall-cmd --reload
+   41  clear
+   42  history >> /vagrant/app01.txt
+   43  eit
+   44  exit
+   45  clear
+   46  cd /tmp/
+   47  ll
+   48  rm apache-tomcat-11.0.14*
+   49  rm -rf apache-tomcat-11.0.14*
+   50  clear
+   51  ll
+   52  wget https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz
+   53  wget https://dlcdn.apache.org/maven/mvnd/1.0.3/maven-mvnd-1.0.3-darwin-aarch64.tar.gz
+   54  clear
+   55  ll
+   56  tar xzvf maven-mvnd-1.0.3-darwin-aarch64.tar.gz 
+   57  ll
+   58  cd maven-mvnd-1.0.3-darwin-aarch64/
+   59  ll
+   60  cd ..
+   61  ll
+   62  tar xzvf apache-maven-3.9.11-bin.tar.gz 
+   63  clear
+   64  ll
+   65  cd apache-maven-3.9.11/
+   66  ll
+   67  cd ..
+   68  cp -r apache-maven-3.9.11/* /usr/local/maven3.9/
+   69  mkdir /usr/local/maven3.9
+   70  cp -r apache-maven-3.9.11/* /usr/local/maven3.9/
+   71  clear
+   72  cd /usr/local/maven3.9/
+   73  ll
+   74  export MAVEN_OPTS="-Xmx512m"
+   75  cd /tmp/
+   76  clear
+   77  git clone -b local https://github.com/hkhcoder/vprofile-project.git
+   78  ll
+   79  cd vprofile-project/
+   80  ll
+   81  nano src/main/resources/application.properties
+   82  /usr/local/maven3.9/bin/mvn install
+   83  clear
+   84  systemctl stop tomcat
+   85  ll
+   86  ll target/
+   87  rm -rf /usr/local/tomcat/webapps/ROOT*
+   88  cp target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+   89  systemctl start tomcat
+   90  chown tomcat.tomcat /usr/local/tomcat/webapps -R
+   91  chown tomcat:tomcat /usr/local/tomcat/webapps -R
+   92  systemctl restart tomcat
+   93  history > /vagrant/app01.txt 
