@@ -1,5 +1,5 @@
 #!/bin/bash
-DATABASE_PASS='Maimutic@0505'
+DATABASE_PASS='Admin123'
 sudo dnf update -y
 sudo dnf install git zip unzip -y
 sudo dnf install mariadb105-server -y
