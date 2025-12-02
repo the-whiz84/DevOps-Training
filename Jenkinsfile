@@ -1,23 +1,25 @@
 pipeline {
     
 	agent any
-tools {
+    
+    tools {
 	    maven "MAVEN3"
 	    jdk "JDK17"
 	}
+    
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "IP:8081"
         NEXUS_REPOSITORY = "vprofile-release"
-	NEXUS_REPO_ID    = "vprofile-release"
+	    NEXUS_REPO_ID    = "vprofile-release"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         ARTVERSION = "${env.BUILD_ID}"
     }
 	
-    stages{
+    stages {
         
-        stage('BUILD'){
+        stage('BUILD') {
             steps {
                 sh 'mvn clean install -DskipTests'
             }
@@ -29,19 +31,19 @@ tools {
             }
         }
 
-	stage('UNIT TEST'){
+        stage('UNIT TEST') {
             steps {
                 sh 'mvn test'
             }
-        }
+            }
 
-	stage('INTEGRATION TEST'){
+        stage('INTEGRATION TEST') {
             steps {
                 sh 'mvn verify -DskipUnitTests'
             }
-        }
+            }
 		
-        stage ('CODE ANALYSIS WITH CHECKSTYLE'){
+        stage ('CODE ANALYSIS WITH CHECKSTYLE') {
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
@@ -105,8 +107,8 @@ tools {
                                 type: "pom"]
                             ]
                         );
-                    } 
-		    else {
+                    }
+                    else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
                 }
