@@ -1,0 +1,146 @@
+# Common .gitignore for macOS, Windows, editors, languages and DevOps tools
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Swap / backup / temp files
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+*.pid
+*.seed
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment / secrets
+.env
+.env.*
+.env.local
+.env.*.local
+secrets.*
+*.pem
+*.key
+*.p12
+credentials
+*.crt
+
+# Node
+node_modules/
+dist/
+.cache/
+.next/
+.nuxt/
+.vite/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env/
+pip-log.txt
+.python-version
+poetry.lock
+
+# Java / Maven / Gradle
+target/
+build/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.ear
+.gradle/
+.gradle-cache/
+
+# Go
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+vendor/
+
+# Rust
+/target/
+**/target/
+
+# Ruby
+*.gem
+.bundle/
+vendor/bundle/
+log/
+tmp/
+
+
+# Terraform / Terragrunt
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+crash.log
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terragrunt-cache/
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.local.yml
+*.local.env
+**/docker-compose.override.yml
+
+# Kubernetes
+.kube/
+kubeconfig
+*.kubeconfig
+
+# CI / Test coverage
+coverage/
+coverage.out
+test-results/
+*.lcov
+*.cover
+reports/
+
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.sublime-project
+*.sublime-workspace
+.vscode-test/
+
+# Build artifacts
+dist/
+build/
+out/
+release/
+public/
+
+# Misc
+*.lock
+*.log.*
+*.tmp.*
