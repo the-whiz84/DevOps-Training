@@ -2,7 +2,7 @@
 
 # Prometheus Installation Script
 # Standard paths: /etc/prometheus (config), /var/lib/prometheus (data)
-# Version: 3.5.0
+# Version: 3.8.1
 
 set -e
 
@@ -11,7 +11,7 @@ echo "prometheus" > /etc/hostname
 hostname prometheus
 
 # Variables
-PROM_VERSION="3.5.0"
+PROM_VERSION="3.8.1"
 DOWNLOAD_URL="https://github.com/prometheus/prometheus/releases/download/v${PROM_VERSION}/prometheus-${PROM_VERSION}.linux-amd64.tar.gz"
 TAR_FILE="prometheus-${PROM_VERSION}.linux-amd64.tar.gz"
 EXTRACT_DIR="prometheus-${PROM_VERSION}.linux-amd64"
