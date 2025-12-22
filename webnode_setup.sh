@@ -10,12 +10,16 @@
 #   5. Alloy (for metrics & logs collection)
 #   6. Final Summary
 #
-#  Author: HKH Admin
-#  Version: 2.0
-#  Tested on: Ubuntu 22.04 LTS
+#  Author: Radu Chiriac
+#  Version: 2.1
+#  Tested on: Ubuntu 24.04 LTS
 #=============================================================
 
 set -e  # Exit immediately if a command fails
+
+# Variables
+PrometheusIP=""  # Replace with actual Prometheus server IP
+LokiIP=""      # Replace with actual Loki server IP
 
 #-------------------------------------------------------------
 # 1. Basic System Setup
@@ -97,9 +101,9 @@ sudo apt install -y python3 python3-venv
 # Clone the project repository
 mkdir -p /tmp/project
 cd /tmp/project
-echo "Cloning vprofile-project repository..."
-git clone https://github.com/hkhcoder/vprofile-project.git
-cd vprofile-project/
+echo "Cloning DevOps-Training repository..."
+git clone https://github.com/the-whiz84/DevOps-Training.git
+cd DevOps-Training/
 git checkout monitoring
 
 # Move titan to /opt and set up virtual environment
@@ -153,8 +157,8 @@ echo "===== [4/6] Setting up load generation scripts ====="
 apt install -y stress
 
 echo "Downloading load scripts..."
-wget -q -P /usr/local/bin/ https://raw.githubusercontent.com/hkhcoder/vprofile-project/refs/heads/monitoring/load.sh
-wget -q -P /usr/local/bin/ https://raw.githubusercontent.com/hkhcoder/vprofile-project/refs/heads/monitoring/generate_multi_logs.sh
+wget -q -P /usr/local/bin/ https://raw.githubusercontent.com/the-whiz84/DevOps-Training/refs/heads/monitoring/load.sh
+wget -q -P /usr/local/bin/ https://raw.githubusercontent.com/the-whiz84/DevOps-Training/refs/heads/monitoring/generate_multi_logs.sh
 
 chmod +x /usr/local/bin/load.sh /usr/local/bin/generate_multi_logs.sh
 
@@ -180,7 +184,7 @@ cat <<EOF > /etc/alloy/config.alloy
 
 prometheus.remote_write "default" {
   endpoint {
-    url = "http://PrometheusIP:9090/api/v1/write"
+    url = "http://${PrometheusIP}:9090/api/v1/write"
   }
 }
 
@@ -219,7 +223,7 @@ loki.source.file "log_scrape" {
 
 loki.write "loki" {
   endpoint {
-    url = "http://LokiIP:3100/loki/api/v1/push"
+    url = "http://${LokiIP}:3100/loki/api/v1/push"
   }
 }
 EOF
@@ -281,6 +285,6 @@ echo "🎉  Setup completed successfully!"
 echo "-------------------------------------------------------------"
 echo " Node Exporter  : Running on port 9100"
 echo " Apache Website : Available at http://$(hostname -I | awk '{print $1}')"
-echo " Alloy Metrics  : Forwarding to Prometheus at PrometheusIP:9090"
-echo " Alloy Logs     : Forwarding to Loki at LokiIP:3100"
+echo " Alloy Metrics  : Forwarding to Prometheus at ${PrometheusIP}:9090"
+echo " Alloy Logs     : Forwarding to Loki at ${LokiIP}:3100"
 echo "============================================================="
