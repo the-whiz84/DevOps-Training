@@ -2,14 +2,14 @@
 
 # Grafana Enterprise Installation Script
 # Standard paths: /etc/grafana (config), /var/lib/grafana (data)
-# Version: 12.2.1
+# Version: 12.3.1
 
 set -e
 
 # Variables
-GRAFANA_VERSION="12.2.1"
-DOWNLOAD_URL="https://dl.grafana.com/grafana-enterprise/release/${GRAFANA_VERSION}/grafana-enterprise_${GRAFANA_VERSION}_18655849634_linux_amd64.deb"
-DEB_FILE="grafana-enterprise_${GRAFANA_VERSION}_18655849634_linux_amd64.deb"
+GRAFANA_VERSION="12.3.1"
+DOWNLOAD_URL="https://dl.grafana.com/grafana-enterprise/release/${GRAFANA_VERSION}/grafana-enterprise_${GRAFANA_VERSION}_20271043721_linux_amd64.deb"
+DEB_FILE="grafana-enterprise_${GRAFANA_VERSION}_20271043721_linux_amd64.deb"
 SERVICE="grafana-server"
 
 # Update system
