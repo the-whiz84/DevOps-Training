@@ -2,12 +2,12 @@
 
 # Loki Installation Script
 # Standard paths: /etc/loki (config), /var/lib/loki (data)
-# Version: 3.5.7 (latest as of November 2025)
+# Version: 3.6.3 (latest as of December 2025)
 
 set -e
 
 # Variables
-LOKI_VERSION="3.5.7"
+LOKI_VERSION="3.6.3"
 DOWNLOAD_URL="https://github.com/grafana/loki/releases/download/v${LOKI_VERSION}/loki-linux-amd64.zip"
 ZIP_FILE="loki-linux-amd64.zip"
 BINARY="loki-linux-amd64"
