@@ -127,7 +127,7 @@ echo "Cloud SQL Private IP: $db01IP"
 
 # Intialize database.
 echo "Login to bastion host and execute the following command to initialize the database:"
-echo "wget https://raw.githubusercontent.com/hkhcoder/vprofile-project/refs/heads/gcp/src/main/resources/db_backup.sql"
+echo "wget https://raw.githubusercontent.com/the-whiz84/DevOps-Training/refs/heads/gcp/src/main/resources/db_backup.sql"
 echo "apt update && apt install mysql-client -y"
 echo "mysql -h $db01IP -u root -p$DB_PASSWORD accounts < db_backup.sql"
 
