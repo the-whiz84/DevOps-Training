@@ -20,7 +20,7 @@ services:
   
   vprormq01:
     image: rabbitmq
-    container_name: vprormq01
+    container_name: vpromq01
     ports:
       - "5672:5672"
     environment:
